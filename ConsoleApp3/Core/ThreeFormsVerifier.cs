@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
 
 namespace Core
 {
+    [Serializable]
     public class ThreeFormsVerifier
     {
-        private List<(string baseForm, string pastSimple, string pastPerfect)> _forms;
+        private List<(string baseForm, string pastSimple, string pastPerfect)> _forms;       
         public List<(string baseForm, string pastSimple, string pastPerfect)> Forms { get => _forms; }
 
         private List<(string baseForm, string pastSimple, string pastPerfect)> _updatedForms;
@@ -14,13 +17,16 @@ namespace Core
 
         public (string word, int index, int form) ChosenWord { get; protected set; }
 
+        public bool GameEnd { get => Forms.Count == 0; }
+
         public int Score { get; protected set; }
 
         public ThreeFormsVerifier(List<(string baseForm, string pastSimple, string pastPerfect)> forms)
         {
-            if (forms == null) throw new ArgumentNullException("Argument cannot be null");
+            if (forms == null) throw new ArgumentNullException("ThreeFormsVerifier constructor: Argument cannot be null");
 
             _forms = forms;
+            _updatedForms = new List<(string baseForm, string pastSimple, string pastPerfect)>();
         }
 
         public string GetRandomWord()
@@ -46,13 +52,15 @@ namespace Core
 
         public (bool rezult, string text) CheckRezults(string input)
         {
-            string[] split = input.Split(' ');
             bool rezult = false;
 
-            if (split.Length != 3 || split.All(i => string.IsNullOrEmpty(i)))
+            Regex wordPattern = new Regex(@"[\w/]+");
+            MatchCollection matches = wordPattern.Matches(input);
+            if (matches.Count != 3)
+            {
                 return (false, _forms[ChosenWord.index].ToString());
-
-            UpdatedForms.Add((split[0], split[1], split[2]));
+            }
+            UpdatedForms.Add((matches[0].Value.ToLower(), matches[1].Value.ToLower(), matches[2].Value.ToLower()));
 
             if (_forms[ChosenWord.index].Equals(_updatedForms.Last()))
             {

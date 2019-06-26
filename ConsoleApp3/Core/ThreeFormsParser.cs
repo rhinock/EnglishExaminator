@@ -6,9 +6,9 @@ using System.Text.RegularExpressions;
 
 namespace Core
 {
-    class ThreeFormsParser
+    public class ThreeFormsParser
     {
-        static List<(string, string, string)> ParseFile(string filename)
+        public static List<(string, string, string)> ParseFile(string filename)
         {
             if (!File.Exists(filename))
                 throw new FileNotFoundException($"File {filename} is not exist");
@@ -18,17 +18,20 @@ namespace Core
 
             foreach (string row in rows)
             {
-                Regex wordPattern = new Regex(@"\w+");
+                Regex wordPattern = new Regex(@"[\w/]+");
                 MatchCollection matches = wordPattern.Matches(row);
                 if (matches.Count == 3)
                 {
-                    rezultList.Add((matches[0].Value, matches[1].Value, matches[2].Value));
+                    rezultList.Add((matches[0].Value.ToLower(), matches[1].Value.ToLower(), matches[2].Value.ToLower()));
                 }
                 else
                 {
                     continue;
                 }
             }
+
+            if (rezultList.Count == 0)
+                throw new ArgumentException($"File {filename} has unsupported inner structure");
 
             return rezultList;
         }
