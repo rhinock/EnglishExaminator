@@ -18,7 +18,7 @@ namespace ThreeForms
         public Tuple<int, int> size = new Tuple<int, int>(10, 3);
 
         // Текст кнопки
-        public string content = "CELL";
+        public string content = "Button";
 
         // Цвет кнопки
         public ConsoleColor color = ConsoleColor.White;
