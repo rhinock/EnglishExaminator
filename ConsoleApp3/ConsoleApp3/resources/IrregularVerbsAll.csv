@@ -19,7 +19,7 @@ break;broke;broken
 breed;bred;bred
 bring;brought;brought
 build;built;built
-burn;burnt;burnt
+burn;burnt/burned;burnt/burned
 buy;bought;bought
 can;could;-
 cast;cast;cast
@@ -38,7 +38,7 @@ dig;dug;dug
 dive;dove;dived
 do;did;done
 draw;drew;drawn
-dream;dreamt;dreamt
+dream;dreamt/dreamed;dreamt/dreamed
 drink;drank;drunk
 drive;drove;driven
 eat;ate;eaten
@@ -58,7 +58,7 @@ forsake;forsook;forsaken
 freeze;froze;frozen
 get;got;got
 give;gave;given
-go;went;gone
+go;went;gone/been
 grow;grew;grown
 hang;hung;hung
 have;had;had
@@ -78,7 +78,7 @@ lay;laid;laid
 lead;led;led
 lean;lent;lent
 leap;leapt;leapt
-learn;learnt;learnt
+learn;learnt/learned;learnt/learned
 leave;left;left
 lend;lent;lent
 let;let;let
@@ -136,7 +136,7 @@ sneak;snuck;snuck
 sow;sew;sown
 speak;spoke;spoken
 speed;sped;sped
-spell;spelt;spelt
+spell;spelt/spelled;spelt/spelled
 spend;spent;spent
 spill;spilt;spilt
 spin;span;spun
