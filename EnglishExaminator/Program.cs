@@ -25,9 +25,12 @@ namespace EnglishExaminator
             TupleList<string, string, string> baseTuple = new TupleList<string, string, string>();
 
             Console.WriteLine("Write the name of file:");
+            Console.WriteLine("Press Enter to use default file IrregularVerbsAll.csv");
             do
             {
                 name = Console.ReadLine();
+                if (string.IsNullOrEmpty(name))
+                    name = "IrregularVerbsAll.csv";
                 try
                 {
                     str = File.ReadAllLines($@"{ name }");
